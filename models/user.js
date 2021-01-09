@@ -27,7 +27,16 @@ const userSchema = new mongoose.Schema({
     comments:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment"
+    }],
+    following:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }],
+    followers:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     }]
+
 });
 
 userSchema.pre('save', async function(next) {

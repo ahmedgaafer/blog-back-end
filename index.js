@@ -9,6 +9,7 @@ const { ensureCorrectUser,loginRequired } = require('./middleware/auth')
 
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/posts');
+const commentRoutes = require('./routes/comment');
 
 // Server Configs
 app.use(cors());
@@ -19,6 +20,9 @@ app.use(bodyParser.json());
 app.use('/api/auth', authRoutes);
 app.use('/api/users/:id/posts', loginRequired, ensureCorrectUser, postRoutes.userRouter);
 app.use('/api/posts', loginRequired, postRoutes.generalRouter);
+app.use('/api/post/:id/comment', loginRequired, commentRoutes.getRouter);
+app.use('/api/post/:id/comment', loginRequired, ensureCorrectUser, commentRoutes.postRouter);
+
 
 // Routes & Error fallback
 app.use((req, res, next) => {

@@ -2,6 +2,7 @@ const db = require('../models');
 const JWT = require("jsonwebtoken");
 const CONFIGS = require('../config');
 
+// POST /api/auth/signin
 exports.signIn = async function(req, res, next){
     try{
 
@@ -38,7 +39,7 @@ exports.signIn = async function(req, res, next){
     }
 }
     
-
+// POST /api/auth/signup
 exports.signUp = async function(req, res, next){
     try{
         // Create User
