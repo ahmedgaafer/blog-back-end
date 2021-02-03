@@ -1,26 +1,22 @@
 const express    = require('express');
-const { getComment, getComments, getUserComments, addComment, editComment, deleteComment } = require('../handlers/comment');
+const { getPostComments, getUserComments, createComment, deleteComment, editComment } = require('../handlers/comment');
+const { loginRequired, ensureCorrectUser } = require('../middleware/auth');
+const Router = express.Router({mergeParams: true});
 
-const getRouter = express.Router({mergeParams: true});
-const postRouter = express.Router({mergeParams: true});
 
-getRouter.route('/')
-.get(getComments)
+Router.route('/post/:post_id')
+.get(getPostComments)
 
-getRouter.route('/user/:user_id')
+Router.route('/post/:post_id/user/:id')
 .get(getUserComments)
 
-postRouter.route('/')
-.post(addComment)
+Router.route('/post/:post_id/user/:id')
+.post(loginRequired, ensureCorrectUser, createComment)
 
-postRouter.route('/:comment_id')
-.get(getComment)
-.put(editComment)
-.delete(deleteComment)
-
+Router.route('/post/:post_id/user/:id/comment/:comment_id')
+.put(loginRequired, ensureCorrectUser, editComment)
+.delete(loginRequired, ensureCorrectUser, deleteComment)
 
 
-module.exports = {
-    getRouter,
-    postRouter
-}
+
+module.exports = Router;

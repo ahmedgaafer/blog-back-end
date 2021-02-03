@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const commentSchema = mongoose.Schema({
-    body:{
+    text:{
         type: String,
         required: true,
         maxLength: 160
@@ -19,5 +19,14 @@ const commentSchema = mongoose.Schema({
 });
 
 commentSchema.set('timestamps', true);
+commentSchema.pre('remove', async function(next){
+    try{
+        return next();
+    }
+    catch (e){
+        return next(e);
+    }
+})
+
 
 module.exports = mongoose.model('Comment', commentSchema);

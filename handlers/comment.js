@@ -1,18 +1,17 @@
+const DBMiddleWare  = require('../dataMiddleware');
 
-// GET /api/post/:id/comment
-exports.getComment = async function(req, res, next){}
 
-// GET /api/post/:id/comment/:comment_id
-exports.getComments = async function(req, res, next){}
 
-// GET /api/post/:id//comment/user/:user_id
-exports.getUserComments = async function(req, res, next){}
+exports.getPostComments = DBMiddleWare.Comment.getPostComments;
 
-// POST /api/post/:id/comment
-exports.addComment = async function(req, res, next){}
 
-// PUT /api/post/:id/comment/:comment_id
-exports.editComment = async function(req, res, next){}
+exports.getUserComments = DBMiddleWare.Comment.getUserComments
 
-//DELETE /api/post/:id/comment/:comment_id
-exports.deleteComment = async function(req, res, next){}
+
+exports.createComment = DBMiddleWare.Comment.createComment;
+
+
+exports.editComment = DBMiddleWare.Comment.editComment;
+
+
+exports.deleteComment = DBMiddleWare.Comment.deleteComment;

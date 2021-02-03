@@ -1,24 +1,22 @@
 const express    = require('express');
-const { createPost, deletePost, getPost, getPosts, getUserPosts } = require('../handlers/posts');
+const { createPost, deletePost, getAllPosts, getUserPostById, getUserPosts} = require('../handlers/posts');
+const { loginRequired, ensureCorrectUser } = require('../middleware/auth');
 
-const userRouter = express.Router({mergeParams: true});
-const generalRouter = express.Router({mergeParams: true});
+const Router = express.Router({mergeParams: true});
+
 //User specific routes requires user Token
-userRouter.route('/')
-.post(createPost);
+Router.route('/user/:id')
+.post(loginRequired, ensureCorrectUser, createPost);
 
-userRouter.route('/:post_id')
-.get(getPost)
-.delete(deletePost);
+Router.route('/:post_id/user/:id')
+.get(loginRequired, getUserPostById)
+.delete(loginRequired, ensureCorrectUser, deletePost);
 
 //General routes requires Just to be logged in
-generalRouter.route('/')
-.get(getPosts);
+Router.route('/')
+.get(getAllPosts);
 
-generalRouter.route('/:id')
+Router.route('/:id')
 .get(getUserPosts);
 
-module.exports = {
-    userRouter,
-    generalRouter
-};
+module.exports = Router;

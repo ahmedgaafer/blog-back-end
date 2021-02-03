@@ -12,3 +12,4 @@ mongoose.connect(CONFIGS.MONGO_URI,{
 module.exports.User = require('./user');
 module.exports.Post = require('./post');
 module.exports.Comment = require('./comments');
+module.exports.Connect = require('./follow');
