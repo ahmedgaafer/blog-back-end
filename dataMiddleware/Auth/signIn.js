@@ -9,6 +9,7 @@ module.exports = async function(req, res, next){
             email: req.body.email,
         });
 
+        if(!user) return res.status(400).json({message:`no user  "${req.body.email}"  found`})
         const { id, username, profileImageUrl } = user;
         const isMatch = await user.comparePassword(req.body.password) ;
         

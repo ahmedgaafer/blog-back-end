@@ -1,15 +1,17 @@
-const express    = require('express'),
-      app        = express(),
-      cors       = require('cors'),
-      bodyParser = require('body-parser');
+const express = require('express'),
+app = express(),
+cors = require('cors');
+
 
 const errorHandler = require('./handlers/error');
 const CONFIGS = require('./config');
 const router = require('./routes');
 
 // Server Configs
+
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+
 
 // Routes
 app.use('/api', router);
