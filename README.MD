@@ -9,8 +9,6 @@
 - All user specefic actions are protected and can't be forged unless **cookie/ localstorage** is leaked
 - Check **config.js** for all env variables
 
-
-
 ## Routes:
 
 ### Auth:
@@ -45,6 +43,10 @@
 
 ```js
 "/api/post/user/:id" POST
+
+{
+  "text": "some words in the post"
+}
 ```
 
 * [X] Delete Post
@@ -83,6 +85,11 @@
 
 ```js
 "/api/comment/post/:post_id/user/:id" POST
+
+{
+  "text":"some comment"
+}
+
 ```
 
 * [X] Delete a Comment:
