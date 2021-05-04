@@ -6,7 +6,7 @@ module.exports = async function(req, res, next){
         .sort({createdAt: "desc"})
         .populate("user", {
             username: true,
-            profileImageUrl: true 
+            profileImageUrl: true,
         });
 
         return res.status(200).json(posts);

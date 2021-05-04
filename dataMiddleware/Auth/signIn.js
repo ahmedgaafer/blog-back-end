@@ -8,8 +8,8 @@ module.exports = async function(req, res, next){
         const user = await db.User.findOne({
             email: req.body.email,
         });
-
-        if(!user) return res.status(400).json({message:`no user  "${req.body.email}"  found`})
+        console.log(req.body)
+        if(!user) return res.status(404).json({message:`no user  "${req.body.email}"  found`})
         const { id, username, profileImageUrl } = user;
         const isMatch = await user.comparePassword(req.body.password) ;
         
