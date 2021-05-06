@@ -6,8 +6,8 @@ const Router = express.Router({mergeParams: true});
 
 //User specific routes requires user Token
 Router.route('/user/:id')
-.post(loginRequired, ensureCorrectUser, createPost)
-.get(getUserPosts);
+.post(getUserPosts)
+.post(loginRequired, ensureCorrectUser, createPost);
 
 Router.route('/:post_id/user/:id')
 .get(loginRequired, getUserPostById)
@@ -16,7 +16,7 @@ Router.route('/:post_id/user/:id')
 
 //General routes requires Just to be logged in
 Router.route('/')
-.get(getAllPosts);
+.post(getAllPosts);
 
 
 
