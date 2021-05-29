@@ -1,6 +1,5 @@
 const db = require("../../models");
 const CONFIGS = require("../../config");
-const mongoose = require("mongoose");
 
 module.exports = async function (req, res, next) {
 	try {
